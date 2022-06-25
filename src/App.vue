@@ -1,14 +1,20 @@
+import bootstrap.js 
 <template>
   <div id="app">
     <div id="nav">
-      <router-link :to="{ name: 'main' }">Vue Recipes</router-link>|
+      <router-link :to="{ name: 'main' }">Simot Recipes</router-link>|
       <router-link :to="{ name: 'search' }">Search</router-link>|
       {{ !$root.store.username }}
       <span v-if="!$root.store.username">
         Guest:
         <router-link :to="{ name: 'register' }">Register</router-link>|
         <router-link :to="{ name: 'login' }">Login</router-link>|
-        <router-link :to="{ name: 'FavoriteRecipes' }">FavoriteRecipes</router-link>|
+        <b-dropdown id="mydrop" text="Personal">
+          <b-dropdown-item> <router-link :to="{ name: 'favorites' }">Favorites</router-link></b-dropdown-item>
+          <b-dropdown-item>My Recipes</b-dropdown-item>
+          <b-dropdown-item>Family Recipes</b-dropdown-item>
+        </b-dropdown>
+    
       </span>
       <span v-else>
         {{ $root.store.username }}: <button @click="Logout">Logout</button>|
@@ -51,10 +57,19 @@ export default {
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  
 }
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+#mydrop {
+  background-color: navajowhite;
+  color: #42b983;
+}
+
+.b-dropdown {
+  background-color: white;
 }
 </style>
