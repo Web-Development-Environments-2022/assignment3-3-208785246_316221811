@@ -8,6 +8,7 @@
         Guest:
         <router-link :to="{ name: 'register' }">Register</router-link>|
         <router-link :to="{ name: 'login' }">Login</router-link>|
+        <router-link :to="{ name: 'FavoriteRecipes' }">FavoriteRecipes</router-link>|
       </span>
       <span v-else>
         {{ $root.store.username }}: <button @click="Logout">Logout</button>|
