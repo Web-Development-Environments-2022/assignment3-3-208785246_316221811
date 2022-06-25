@@ -8,17 +8,11 @@
         Guest:
         <router-link :to="{ name: 'register' }">Register</router-link>|
         <router-link :to="{ name: 'login' }">Login</router-link>|
-        <router-link :to="{ name: 'FavoriteRecipes' }">FavoriteRecipes</router-link>|
-          <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
-      <a class="dropdown-item" href="#">Something else here</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" href="#">Separated link</a>
-    </div>
-  </li>
+        <b-dropdown id="mydrop" text="Personal">
+          <b-dropdown-item> <router-link :to="{ name: 'favorites' }">Favorites</router-link></b-dropdown-item>
+          <b-dropdown-item>My Recipes</b-dropdown-item>
+          <b-dropdown-item>Family Recipes</b-dropdown-item>
+        </b-dropdown>
       </span>
       <span v-else>
         {{ $root.store.username }}: <button @click="Logout">Logout</button>|
@@ -53,6 +47,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   min-height: 100vh;
+  background: lightblue;
 }
 
 #nav {
