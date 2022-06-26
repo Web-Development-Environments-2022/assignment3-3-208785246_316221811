@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <div v-if="recipe">
+      <img id="recipe_photo" :src="require(`../assets/${recipe.recipe_id}.jpeg`)">
       <h6>owner:</h6>
       <div :owner="recipe.owner" class="recipe">
         {{ recipe.owner }}
@@ -17,9 +18,6 @@
       <div :prepararion="recipe.preparation" class="recipe">
         {{ recipe.preparation }}
     </div>
-      <div class="recipe-body">
-      <img v-if="image_load" :src="recipe.imageurl" class="recipe-image" />
-      </div>
       </div>
       </div>
 </template>
@@ -67,4 +65,5 @@ export default {
 
 <style>
 h6{ color: #5d58e1; font-family: "Great Vibes", cursive; font-size: 20px; font-weight: normal; text-shadow: 0 1px 1px #fff; }
+#recipe_photo{ width:200px; border-radius: 20%;}
 </style>
