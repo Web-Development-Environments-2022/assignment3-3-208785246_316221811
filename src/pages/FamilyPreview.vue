@@ -2,19 +2,19 @@
   <div class="container">
     <div v-if="recipe">
       <h6>owner:</h6>
-      <div :owner="recipe.owner" class="recipe-owner">
+      <div :owner="recipe.owner" class="recipe">
         {{ recipe.owner }}
       </div>
       <h6>time:</h6>
-      <div :time="recipe.time" class="recipe-time">
+      <div :time="recipe.time" class="recipe">
         {{ recipe.time }}
       </div>
       <h6>ingredients:</h6>
-      <div :gradients="recipe.gradients" class="recipe-ingredients">
+      <div :gradients="recipe.gradients" class="recipe">
         {{ recipe.gradients }}
       </div>
       <h6>preparation:</h6>
-      <div :prepararion="recipe.preparation" class="recipe-prepararion">
+      <div :prepararion="recipe.preparation" class="recipe">
         {{ recipe.preparation }}
     </div>
       <div class="recipe-body">
