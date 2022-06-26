@@ -1,15 +1,24 @@
 <template>
   <div class="container">
     <h1 class="title">Family recipes</h1>
+    <b-row>
+      <b-col v-for="r in recipes" :key="r.recipe_id">
+        <FamilyPreview class="FamilyPreview" :recipe="r" />
+      </b-col>
+    </b-row>
   </div>
 </template>
 
 <script>
+import FamilyPreview from "./FamilyPreview.vue"
 export default {
-    name: "FamilyRecipes",
+      name: "FamilyRecipes",
+      components: {
+      FamilyPreview
+    },
     data() {
     return {
-      familyRecipes: []
+      recipes: []
     };
   },
   methods: {
@@ -20,11 +29,9 @@ export default {
           "http://localhost:3000/users/family"
         );
         this.axios.defaults.withCredentials = false;
-        console.log(response);
         const recipes = response.data;
-        console.log(recipes);
-        this.familyRecipes = [];
-        this.familyRecipes.push(...recipes);
+        this.recipes = [];
+        this.recipes.push(...recipes);
       } catch (err) {
         console.log(err.response);
       }
