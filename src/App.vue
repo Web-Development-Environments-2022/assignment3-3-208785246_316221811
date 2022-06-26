@@ -14,7 +14,7 @@
         {{ $root.store.username }}: <button @click="Logout">Logout</button>|
         <b-dropdown id="mydrop" text="Personal">
           <b-dropdown-item> <router-link :to="{ name: 'favorites' }">Favorites</router-link></b-dropdown-item>
-          <b-dropdown-item>My Recipes</b-dropdown-item>
+          <b-dropdown-item><router-link :to="{ name: 'myrecipes' }">My recipes</router-link></b-dropdown-item>
           <b-dropdown-item><router-link :to="{ name: 'family' }">Family recipes</router-link></b-dropdown-item>
         </b-dropdown>
       </span>

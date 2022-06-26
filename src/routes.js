@@ -28,6 +28,11 @@ const routes = [
     component: () => import("./pages/LoginPage"),
   },
   {
+  path: "/myrecipes",
+    name: "myrecipes",
+    component: () => import("./pages/UserRecipes"),
+  },
+  {
     path: "/search",
     name: "search",
     component: () => import("./pages/SearchPage"),
@@ -45,3 +50,5 @@ const routes = [
 ];
 
 export default routes;
+
+
