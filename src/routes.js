@@ -18,6 +18,11 @@ const routes = [
     component: () => import("./pages/FavoriteRecipes"),
   },
   {
+    path: "/family",
+    name: "family",
+    component: () => import("./pages/FamilyRecipes"),
+  },
+  {
     path: "/login",
     name: "login",
     component: () => import("./pages/LoginPage"),
