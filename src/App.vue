@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <img id="sim" src="./assets/sim.jpeg">
     <div id="nav">
       <router-link :to="{ name: 'main' }">Vue Recipes</router-link>|
       <router-link :to="{ name: 'search' }">Search</router-link>|
@@ -62,4 +63,12 @@ export default {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+#sim {
+  width: 70%;
+  padding: 70px;
+
+
+}
+
 </style>

@@ -21,6 +21,10 @@ import RecipePreviewList from "../components/RecipePreviewList";
 export default {
   components: {
     RecipePreviewList
+  },
+  data(){
+        return{logo: '\src\assets\simot.jpeg'};
+
   }
 };
 </script>
