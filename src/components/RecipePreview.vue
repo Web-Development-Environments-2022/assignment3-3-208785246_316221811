@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div><b-button v-if="$root.store.username" @click="markAsFavorite">favorite</b-button></div>
+    <div><b-button id="favorite" v-if="$root.store.username" @click="markAsFavorite">favorite</b-button></div>
   <router-link
     :to="{ name: 'recipe', params: { recipeId: recipe.id } }"
     class="recipe-preview"
@@ -169,4 +169,5 @@ export default {
   display: table-cell;
   text-align: center;
 }
+
 </style>
