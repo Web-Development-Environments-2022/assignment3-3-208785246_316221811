@@ -73,12 +73,12 @@ export default {
 .recipe-preview {
   display: inline-block;
   width: 90%;
-  height: 100%;
+  height: 90%;
   position: relative;
   margin: 10px 10px;
 }
 .recipe-preview > .recipe-body {
-  width: 100%;
+  width: 90%;
   height: 200px;
   position: relative;
 }
@@ -89,7 +89,7 @@ export default {
   margin-top: auto;
   margin-bottom: auto;
   display: block;
-  width: 67%;
+  width:77%;
   height: auto;
   -webkit-background-size: cover;
   -moz-background-size: cover;

@@ -5,10 +5,7 @@
     <div class="col">
     <RecipePreviewList title="Randome Recipes" class="RandomRecipes center" />
     </div>
-    <div class="col"></div>
     <div class="col">
-    <router-link v-if="!$root.store.username" to="/login" tag="button">You need to Login to vue this</router-link>
-    {{ !$root.store.username }}
     <RecipePreviewList
       title="Last Viewed Recipes"
       :class="{
@@ -18,6 +15,8 @@
       }"
       disabled
     ></RecipePreviewList>
+     <router-link v-if="!$root.store.username" to="/login" tag="button">You need to Login to vue this</router-link>
+    {{ !$root.store.username }}
     </div>
   </div>
 </template>
@@ -40,7 +39,7 @@ export default {
   margin: 10px 0 10px;
 
 }
-.container{
+.container1{
    display: table;
     width: 100%; /*Optional*/
     table-layout: fixed; /*Optional*/
