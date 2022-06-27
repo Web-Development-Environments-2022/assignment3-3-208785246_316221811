@@ -1,4 +1,6 @@
 <template>
+  <div>
+    <div><b-button v-if="$root.store.username" @click="markAsFavorite">favorite</b-button></div>
   <router-link
     :to="{ name: 'recipe', params: { recipeId: recipe.id } }"
     class="recipe-preview"
@@ -9,20 +11,23 @@
     <div class="recipe-footer">
       <div :title="recipe.title" class="recipe-title">
         {{ recipe.title }}
-        
       </div>
       <ul class="recipe-overview">
         <li>{{ recipe.readyInMinutes }} minutes</li>
         <li>{{ recipe.popularity }} likes</li>
-        <li><img v-if="recipe.vegan" class="vegan" src="../assets/vega.jpg"></li>
-        <li><img v-if="recipe.vegetarian" class="vegan" src="../assets/ve.png"></li>
-        <li><img v-if="recipe.glutenFree" class="vegan" src="../assets/gl.jpg"></li>
-       
+        <li>
+          <img v-if="recipe.vegan" class="vegan" src="../assets/vega.jpg" />
+        </li>
+        <li>
+          <img v-if="recipe.vegetarian" class="vegan" src="../assets/ve.png" />
+        </li>
+        <li>
+          <img v-if="recipe.glutenFree" class="vegan" src="../assets/gl.jpg" />
+        </li>
       </ul>
     </div>
-        
-
   </router-link>
+  </div>
 </template>
 
 <script>
@@ -36,6 +41,23 @@ export default {
     return {
       image_load: false,
     };
+  },
+  methods: {
+    async markAsFavorite() {
+      try {
+        this.axios.defaults.withCredentials = true;
+        response = await this.axios.post(
+          "http://localhost:3000/users/favorites",
+          {
+            recipeId: this.recipe.id 
+          }
+        );
+        this.axios.defaults.withCredentials = false;
+        if (response.status !== 200) this.$router.replace("/NotFound");
+      } catch (err) {
+        console.log(err.response);
+      }
+    },
   },
   props: {
     recipe: {
@@ -84,12 +106,12 @@ export default {
 }
 
 .recipe-preview .recipe-body .recipe-image {
-  margin-left: 0px;;
+  margin-left: 0px;
   margin-right: auto;
   margin-top: auto;
   margin-bottom: auto;
   display: block;
-  width:77%;
+  width: 77%;
   height: auto;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -101,7 +123,7 @@ export default {
   height: 50%;
   overflow: hidden;
 }
-.vegan{
+.vegan {
   width: 50px;
 }
 
