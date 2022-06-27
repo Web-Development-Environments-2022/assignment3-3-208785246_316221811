@@ -3,34 +3,43 @@
     <h1 class="title">Main Page</h1>
      <div class="container1"></div>
     <div class="col">
-    <RecipePreviewList title="Randome Recipes" class="RandomRecipes center" />
+    <RecipePreviewList title="Explore this recipes" class="RandomRecipes center" />
+    <b-button @click="showMore">Show more</b-button>
     </div>
     <div class="col">
-    <RecipePreviewList
-      title="Last Viewed Recipes"
-      :class="{
+    <RecipeViewedPreviewList v-if="$root.store.username" title="Last Viewed Recipes" ></RecipeViewedPreviewList>
+    <RecipePreviewList v-if="!$root.store.username" title="Last Viewed Recipes" 
+    :class="{
         RandomRecipes: true,
         blur: !$root.store.username,
         center: true
       }"
       disabled
-    ></RecipePreviewList>
-     <router-link v-if="!$root.store.username" to="/login" tag="button">You need to Login to vue this</router-link>
-    {{ !$root.store.username }}
+      ></RecipePreviewList>
+    <router-link v-if="!$root.store.username" to="/login" tag="button">You need to Login to view this</router-link>
     </div>
+    <login-page v-if="!$root.store.username"></login-page>
   </div>
 </template>
 
 <script>
 import RecipePreviewList from "../components/RecipePreviewList";
+import RecipeViewedPreviewList from "../components/RecipeViewedPreviewList";
+import LoginPage from './LoginPage.vue';
 export default {
   components: {
-    RecipePreviewList
+    RecipePreviewList,
+    RecipeViewedPreviewList,
+    LoginPage
   },
   data(){
         return{logo: '\src\assets\simot.jpeg'};
 
-  }
+  },
+   methods: {
+    async showMore(){
+    }
+   }
 };
 </script>
 
