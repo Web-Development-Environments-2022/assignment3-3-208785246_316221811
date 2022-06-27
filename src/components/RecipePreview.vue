@@ -9,12 +9,18 @@
     <div class="recipe-footer">
       <div :title="recipe.title" class="recipe-title">
         {{ recipe.title }}
+        
       </div>
       <ul class="recipe-overview">
         <li>{{ recipe.readyInMinutes }} minutes</li>
         <li>{{ recipe.popularity }} likes</li>
+        <li><img v-if="recipe.vegan" class="vegan" src="../assets/vega.jpg"></li>
+        <li><img v-if="recipe.vegetarian" class="vegan" src="../assets/ve.png"></li>
+        <li><img v-if="recipe.glutenFree" class="vegan" src="../assets/gl.jpg"></li>
       </ul>
     </div>
+        
+
   </router-link>
 </template>
 
@@ -93,6 +99,9 @@ export default {
   width: 100%;
   height: 50%;
   overflow: hidden;
+}
+.vegan{
+  width: 50px;
 }
 
 .recipe-preview .recipe-footer .recipe-title {
