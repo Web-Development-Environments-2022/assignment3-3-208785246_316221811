@@ -1,23 +1,27 @@
 <template>
   <div id="app">
-    <img id="sim" src="./assets/sim.jpeg">
+    <img id="sim" src="./assets/sim.jpeg">  
     <div id="nav">
-      <router-link :to="{ name: 'main' }">Simot Recipes</router-link>|
-      <router-link :to="{ name: 'search' }">Search</router-link>|
-      {{ !$root.store.username }}
+      <router-link  :to="{ name: 'main' }">     Simot Recipes     </router-link>   
+      <router-link :to="{ name: 'search' }">     Search      </router-link>   
       <span v-if="!$root.store.username">
-        Guest:
-        <router-link :to="{ name: 'register' }">Register</router-link>|
-        <router-link :to="{ name: 'login' }">Login</router-link>|
+        <router-link :to="{ name: 'register' }">     Register     </router-link>   
+        <router-link :to="{ name: 'login' }">     Login     </router-link>
       </span>
       <span v-else>
-        {{ $root.store.username }}: <button @click="Logout">Logout</button>|
-        <b-dropdown id="mydrop" text="Personal">
+        <button @click="Logout" id="logout">     Logout     </button>   
+        <b-dropdown style=" position: absolute;right:100px;" id="mydrop" text="Personal">
           <b-dropdown-item> <router-link :to="{ name: 'favorites' }">Favorites</router-link></b-dropdown-item>
           <b-dropdown-item><router-link :to="{ name: 'myrecipes' }">My recipes</router-link></b-dropdown-item>
           <b-dropdown-item><router-link :to="{ name: 'family' }">Family recipes</router-link></b-dropdown-item>
         </b-dropdown>
       </span>
+    <span v-if="!$root.store.username">
+    Hello guest!
+    </span>
+    <span v-else>
+    Hello {{ $root.store.username }}!
+    </span>  
     </div>
     <router-view />
   </div>
@@ -51,24 +55,41 @@ export default {
   background: rgb(202, 222, 229);
 }
 
-#nav {
-  padding: 30px;
+#mydrop{
+    background: none;
 }
 
-#nav a {
+#nav {
+  background-color: rgb(120, 166, 203);
+}
+
+#nav a, #logout {
+  font-size: 20px;
   font-weight: bold;
   color: #2c3e50;
 }
 
+#nav a:hover, #logout:hover{
+  font-size: 25px;
+  text-decoration: underline;
+}
+
+#logout {
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+}
+
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #ffffff;
+  font-size: 25px;
+  background-color: rgb(83, 114, 139);
+  padding: 15px;
 }
 
 #sim {
-  width: 70%;
-  padding: 70px;
-
-
+  margin-left: auto;
+  margin-right: auto;
 }
 
 </style>

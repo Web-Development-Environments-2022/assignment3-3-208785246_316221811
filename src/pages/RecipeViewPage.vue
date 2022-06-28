@@ -12,6 +12,7 @@
             <div class="mb-3">
               <div>Ready in {{ recipe.readyInMinutes }} minutes</div>
               <div>Likes: {{ recipe.popularity }} likes</div>
+              <div>{{ recipe.servings }} servings</div>
             </div>
             Ingredients:
             <ul>
@@ -79,7 +80,8 @@ export default {
         popularity,
         readyInMinutes,
         image,
-        title
+        title,
+        servings
       } = response.data;
 
      let _instructions = analyzedInstructions
@@ -97,7 +99,8 @@ export default {
         popularity,
         readyInMinutes,
         image,
-        title
+        title,
+        servings
       };
 
       this.recipe = _recipe;

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div><b-button id="favorite" v-if="$root.store.username" @click="markAsFavorite">favorite</b-button></div>
+    <div><b-button id="favorite" v-if="$root.store.username && recipe.id<12345678" @click="markAsFavorite">favorite</b-button></div>
   <router-link
-    :to="{ name: 'recipe', params: { recipeId: recipe.id } }" @click.native="RecipeIsViewed"
+    :to="{ name: 'recipe', params: { recipeId: recipe.id } }" @click.native="RecipeIsViewed" id="clickPhoto"
     class="recipe-preview"
   >
     <div class="recipe-body">
@@ -14,7 +14,7 @@
       </div>
       <ul class="recipe-overview">
         <li>{{ recipe.readyInMinutes }} minutes</li>
-        <li>{{ recipe.popularity }} likes</li>
+        <li>{{ recipe.aggregateLikes || recipe.popularity }} likes</li>
         <li>
           <img v-if="recipe.vegan" class="vegan" src="../assets/vega.jpg" />
         </li>
@@ -183,6 +183,14 @@ export default {
   width: 90px;
   display: table-cell;
   text-align: center;
+}
+
+#clickPhoto { 
+    opacity: 1;
+    cursor: pointer;
+} 
+#clickPhoto:hover{ 
+    opacity: 0.5;
 }
 
 </style>

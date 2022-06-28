@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <h1 class="title">Main Page</h1>
      <div class="container1"></div>
     <div class="col">
     <RecipePreviewList id="randomRecipes" title="Explore this recipes" class="RandomRecipes center" />
@@ -62,4 +61,5 @@ display: table-cell;
   pointer-events: none;
   cursor: default;
 }
+
 </style>
