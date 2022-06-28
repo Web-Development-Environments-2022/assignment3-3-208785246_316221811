@@ -2,7 +2,7 @@
   <div>
     <div><b-button id="favorite" v-if="$root.store.username" @click="markAsFavorite">favorite</b-button></div>
   <router-link
-    :to="{ name: 'recipe', params: { recipeId: recipe.id } }"
+    :to="{ name: 'recipe', params: { recipeId: recipe.id } }" @click.native="RecipeIsViewed"
     class="recipe-preview"
   >
     <div class="recipe-body">
@@ -43,6 +43,21 @@ export default {
     };
   },
   methods: {
+    async RecipeIsViewed(){
+      try {
+        this.axios.defaults.withCredentials = true;
+        response = await this.axios.post(
+          "http://localhost:3000/users/viewed",
+          {
+            recipeId: this.recipe.id 
+          }
+        );
+        this.axios.defaults.withCredentials = false;
+        if (response.status !== 200) this.$router.replace("/NotFound");
+      } catch (err) {
+        console.log(err.response);
+      }
+    },
     async markAsFavorite() {
       try {
         this.axios.defaults.withCredentials = true;
