@@ -1,4 +1,5 @@
 <template>
+<div>
   <b-container>
     <h3>
       {{ title }}:
@@ -10,6 +11,8 @@
       </b-row>
     </b-col>
   </b-container>
+  <b-button @click="showMore">Show me more!</b-button>
+</div>
 </template>
 
 <script>
@@ -34,6 +37,9 @@ export default {
     this.updateRecipes();
   },
   methods: {
+    async showMore() {
+      this.updateRecipes();
+    },
     async updateRecipes() {
       try {
         const response = await this.axios.get(

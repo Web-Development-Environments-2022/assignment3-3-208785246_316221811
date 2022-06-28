@@ -3,8 +3,7 @@
     <h1 class="title">Main Page</h1>
      <div class="container1"></div>
     <div class="col">
-    <RecipePreviewList title="Explore this recipes" class="RandomRecipes center" />
-    <b-button @click="showMore">Show more</b-button>
+    <RecipePreviewList id="randomRecipes" title="Explore this recipes" class="RandomRecipes center" />
     </div>
     <div class="col">
     <RecipeViewedPreviewList v-if="$root.store.username" title="Last Viewed Recipes" ></RecipeViewedPreviewList>
@@ -33,13 +32,11 @@ export default {
     LoginPage
   },
   data(){
-        return{logo: '\src\assets\simot.jpeg'};
+        return{logo: '\src\assets\simot.jpeg'
+        }
+        
 
   },
-   methods: {
-    async showMore(){
-    }
-   }
 };
 </script>
 
