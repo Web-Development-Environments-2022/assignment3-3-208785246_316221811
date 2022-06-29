@@ -225,6 +225,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+h1 { color: #ffffff; text-shadow: 2px 2px 2px #000000; font-family: 'Raleway',sans-serif; font-size: 40px; font-weight: 800; text-align: center; text-transform: uppercase; }
 .container {
   max-width: 500px;
 }

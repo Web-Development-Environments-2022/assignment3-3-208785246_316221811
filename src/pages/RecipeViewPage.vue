@@ -10,11 +10,11 @@
         <div class="wrapper">
           <div class="wrapped">
             <div class="mb-3">
-              <div>Ready in {{ recipe.readyInMinutes }} minutes</div>
-              <div>Likes: {{ recipe.popularity }} likes</div>
-              <div>{{ recipe.servings }} servings</div>
+              <div><h6>Ready in:</h6> {{ recipe.readyInMinutes }} minutes</div>
+              <div><h6>Likes:</h6> {{ recipe.popularity }} likes</div>
+              <div><h6>servings:</h6>{{ recipe.servings }} </div>
             </div>
-            Ingredients:
+            <h6>Ingredients:</h6>
             <ul>
               <li
                 v-for="(r, index) in recipe.extendedIngredients"
@@ -25,7 +25,7 @@
             </ul>
           </div>
           <div class="wrapped">
-            Instructions:
+            <h6>Instructions:</h6>
             <ol>
               <li v-for="s in recipe._instructions" :key="s.number">
                 {{ s.step }}
@@ -124,6 +124,9 @@ export default {
   margin-right: auto;
   width: 50%;
 }
+h1 { color: rgb(120, 166, 203); text-shadow: 2px 2px 2px #000000; font-family: 'Raleway',sans-serif; font-size: 40px; font-weight: 800; text-align: center; text-transform: uppercase; }
+h6 { color: rgb(120, 166, 203); font-family: 'Raleway',sans-serif; font-size: 20px; font-weight: 800; }
+
 /* .recipe-header{
 
 } */

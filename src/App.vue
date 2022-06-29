@@ -64,8 +64,9 @@ export default {
 }
 
 #nav a, #logout {
+  font-family: 'Raleway',sans-serif;
+  font-weight: 800;
   font-size: 20px;
-  font-weight: bold;
   color: #2c3e50;
 }
 
@@ -84,7 +85,7 @@ export default {
   color: #ffffff;
   font-size: 25px;
   background-color: rgb(83, 114, 139);
-  padding: 15px;
+  padding: 11px;
 }
 
 #sim {

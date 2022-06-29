@@ -64,6 +64,7 @@ export default {
 </script>
 
 <style>
-h6{ color: #5d58e1; font-family: "Great Vibes", cursive; font-size: 20px; font-weight: normal; text-shadow: 0 1px 1px #fff; }
+h6 { color: rgb(120, 166, 203); font-family: 'Raleway',sans-serif; font-size: 20px; font-weight: 800; }
+
 #recipe_photo{ width:200px; border-radius: 20%;}
 </style>

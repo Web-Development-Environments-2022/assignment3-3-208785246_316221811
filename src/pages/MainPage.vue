@@ -5,8 +5,8 @@
     <RecipePreviewList id="randomRecipes" title="Explore this recipes" class="RandomRecipes center" />
     </div>
     <div class="col">
-    <RecipeViewedPreviewList v-if="$root.store.username" title="Last Viewed Recipes" ></RecipeViewedPreviewList>
-    <RecipePreviewList v-if="!$root.store.username" title="Last Viewed Recipes" 
+    <RecipeViewedPreviewList id="viewed" v-if="$root.store.username" title="Last Viewed Recipes" ></RecipeViewedPreviewList>
+    <RecipePreviewList id="randomViewed" v-if="!$root.store.username" title="Last Viewed Recipes" 
     :class="{
         RandomRecipes: true,
         blur: !$root.store.username,
@@ -61,5 +61,6 @@ display: table-cell;
   pointer-events: none;
   cursor: default;
 }
+
 
 </style>
