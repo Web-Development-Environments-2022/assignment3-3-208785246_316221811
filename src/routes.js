@@ -13,6 +13,11 @@ const routes = [
     component: () => import("./pages/RegisterPage"),
   },
   {
+    path: "/about",
+    name: "about",
+    component: () => import("./pages/AboutPage"),
+  },
+  {
     path: "/favorites",
     name: "favorites",
     component: () => import("./pages/FavoriteRecipes"),

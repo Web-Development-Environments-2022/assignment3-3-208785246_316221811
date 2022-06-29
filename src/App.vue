@@ -3,7 +3,8 @@
     <img id="sim" src="./assets/sim.jpeg">  
     <div id="nav">
       <router-link  :to="{ name: 'main' }">     Simot Recipes     </router-link>   
-      <router-link :to="{ name: 'search' }">     Search      </router-link>   
+      <router-link :to="{ name: 'search' }">     Search      </router-link>
+      <router-link :to="{ name: 'about' }">     About      </router-link>
       <span v-if="!$root.store.username">
         <router-link :to="{ name: 'register' }">     Register     </router-link>   
         <router-link :to="{ name: 'login' }">     Login     </router-link>
