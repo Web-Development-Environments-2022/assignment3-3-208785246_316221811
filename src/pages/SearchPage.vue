@@ -13,9 +13,11 @@
   
   <b-form-select id="numchoose" class="select" @input="getNum()" v-model="selected" :options="options1" />
 <div>
-  <multiselect v-model="value" id="cuisinechoose" class="select" tag-placeholder="Add this as new tag" placeholder="Choose cousines" label="name" track-by="code" :options="options2" :multiple="true" :taggable="true" @tag="addTag"></multiselect>
+  <multiselect v-model=value id="cuisinechoose" tag-placeholder="Add this as new tag" placeholder="Choose cousine" label="name" track-by="code" :options="options2" :multiple="false" :taggable="true" @tag="addTag"></multiselect>
 </div>
-
+<div>
+  <b-form-select id="Intolerances" @input="getIntolerances()" v-model="chosenintolerances" :options="options3" :multiple="false"  />
+</div>
 </div>   
       
 
@@ -53,14 +55,14 @@ export default {
          props: {
     title: {
       type: String,
-      required: true
     }
   },
 /* All the data variable declaration are done here:  */
   data() {
     return { 
-      selected: "Results number",
-      value: [],
+      value:[],
+      selected: "5",
+      value2: [],
       options2: [
         { name: 'African', code: 'African' },
         { name: 'American', code: 'American' },
@@ -69,7 +71,7 @@ export default {
         { name: 'Caribbean', code: 'Caribbean' },
         { name: 'Chinese', code: 'Chinese' },
         { name: 'Eastern European', code: 'Eastern European' },
-        { name: 'European', code: 'European' },
+        { name: 'asxc European', code: 'European' },
         { name: 'Franch', code: 'Franch' },
         { name: 'German', code: 'German' },
         { name: 'Greek', code: 'Greek' },
@@ -89,16 +91,33 @@ export default {
         { name: 'Thai', code: 'Thai' },
         { name: 'Vietnamese', code: 'Vietnamese' },
       ],
+
+      value1: [],
+      options3: [ { value: null, text: "Choose Intolerances",disabled: true },
+        { value: 'Dairy', text: 'Dairy' },
+        { value: 'Egg', text: 'Egg' },
+        { value: 'Gluten', text: 'Gluten' },
+        { value: 'Grain', text: 'Grain' },
+        { value: 'Peanut', text: 'Peanut' },
+        { value: 'Seafood', text: 'Seafood' },
+        { value: 'Sesame', text: 'Sesame' },
+        { value: 'Shellfish', text: 'Shellfish' },
+        { value: 'Soy', text: 'Soy' },
+        { value: 'Sulfite', text: 'Sulfite' },
+        { value: 'Tree Nut', text: 'Tree Nut' },
+        { value: 'Wheat', text: 'Wheat' },
+        
+      ],
       recipes: [],
       text: '',
-       options1: [{ value: "Results number", text: "Results number", disabled:true },
+       options1: [{ value: null, text: "Results Number",disabled: true },
         { value: "5", text: "5" },
         { value: "10", text: "10" },
         { value: "15", text: "15" }
       ],
       options: [
         { value: null, text: "Sort By",disabled: true },
-        { value: "preperation time", text: "preperation time" },
+        { value: "preparation time", text: "preparation time" },
         { value: "popularity", text: "popularity" }
       ],
     
@@ -112,21 +131,35 @@ export default {
         name: newTag,
         code: newTag.substring(0, 2) + Math.floor((Math.random() * 10000000))
       }
+      
       this.options.push(tag)
       this.value.push(tag)
+    },
+    addTag1 (newTag1) {
+      const tag = {
+        name: newTag1,
+        code: newTag1.substring(0, 2) + Math.floor((Math.random() * 10000000))
+      }
+      
+      this.options3.push(tag)
+      this.value1.push(tag)
     }
   
 ,
     async search_query() {
       const str1=`${this.myinput}`+""
       const num1=this.selected
+      const intol=`${this.chosenintolerances}`
+      const cuis= this.value
       try {
         this.axios.defaults.withCredentials = true;
         const response = await this.axios.get(
           "http://localhost:3000/recipes/searchRecipes",
          { params:{
             query: str1,
-            number:num1
+            number:num1,
+            intolerances: intol,
+            cuisine: cuis
           }}
         );
         this.axios.defaults.withCredentials = false;
@@ -145,7 +178,7 @@ export default {
         this.recipes.sort(function(a, b) {
             return b.aggregateLikes - a.aggregateLikes;
           })}
-      else if(this.search.filter == "preperation time"){
+      else if(this.search.filter == "preparation time"){
         this.recipes.sort(function(a, b) {
             return b.readyInMinutes - a.readyInMinutes;
           })}
@@ -178,32 +211,53 @@ export default {
 
 .search-bar {
   padding-left: 30px;
+  padding-top: 11px;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
 }
 
-.select{
+#cuisinechoose{
   position: relative;
-  width: 170px;
-  right:200px;
-  top:-10px;
-  font-family: 'Raleway',sans-serif;
+  right: 205px;
+  top:  -53px;
+  height: 43px;
   text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: smaller;
+
+}
+
+#Intolerances{
+  position: relative;
+  right: 194px;
+  top:  -43px;
+  height: 43.5px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: smaller;
+
 
 }
 #numchoose{
   position: relative;
   right: 390px;
-  height: 43px;
-  top:33.4px; 
-  color: rgb(170, 161, 161);
+  height: 43.5px;
+  top:43px; 
+  color: Black(170, 161, 161);
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Raleway',sans-serif;
   font-size: smaller;
 }
+.select{
+  position: relative;
+  width: 170px;
+  top:-10px;
+  font-family: 'Raleway',sans-serif;
+  text-align: center;
 
+}
 #sortchoose{
   position: relative;
   padding-left: 30px;
@@ -233,7 +287,7 @@ export default {
 
 #search{
 position: absolute;
-top: 694px;
+top: 705px;
 left: 515px;
 background-color: #3f5874;
 

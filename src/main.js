@@ -9,6 +9,8 @@ Vue.use(VueRouter);
 const router = new VueRouter({
   routes,
 });
+import VueCookies from 'vue-cookies'
+Vue.use(VueCookies);
 
 import Vuelidate from "vuelidate";
 import "bootstrap/dist/css/bootstrap.css";
@@ -76,7 +78,9 @@ const shared_data = {
   logout() {
     console.log("logout");
     localStorage.removeItem("username");
+    localStorage.removeItem("user_id");
     this.username = undefined;
+    this.user_id = undefined;
   },
 };
 console.log(shared_data);
