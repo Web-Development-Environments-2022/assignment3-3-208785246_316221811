@@ -14,6 +14,7 @@
       </div>
       <ul class="recipe-overview">
         <li>{{ recipe.readyInMinutes }} minutes</li>
+        <br>
         <li>{{ recipe.aggregateLikes || recipe.popularity }} likes</li>
         <li>
           <img v-if="recipe.vegan" class="vegan" src="../assets/vega.jpg" />
@@ -118,9 +119,11 @@ export default {
   height: 90%;
   position: relative;
   margin: 10px 10px;
+  
 }
 .recipe-preview > .recipe-body {
   width: 90%;
+  top:-20px;
   height: 200px;
   position: relative;
 }
@@ -128,20 +131,28 @@ export default {
 .recipe-preview .recipe-body .recipe-image {
   margin-left: 0px;
   margin-right: auto;
-  margin-top: auto;
+  margin-top: 20px;
   margin-bottom: auto;
   display: block;
   width: 77%;
+  max-height: 200px;
+  max-width: 320px;
+  border-radius: 20px;
   height: auto;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
+  
 }
 
 .recipe-preview .recipe-footer {
-  width: 100%;
+  width: 50%;
   height: 50%;
   overflow: hidden;
+  font-family: 'Raleway',sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
 }
 .vegan {
   width: 50px;

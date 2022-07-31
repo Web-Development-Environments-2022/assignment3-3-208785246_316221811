@@ -35,7 +35,6 @@
           Password is required
         </b-form-invalid-feedback>
       </b-form-group>
-
       <b-button
         type="submit"
         variant="primary"
@@ -72,7 +71,7 @@ export default {
       form: {
         username: "",
         password: "",
-        submitError: undefined
+        submitError: undefined,
       }
     };
   },
@@ -107,10 +106,10 @@ export default {
           }
         );
         // console.log(response);
-        // this.$root.loggedIn = true;
+        this.$root.loggedIn = true;
         console.log(this.$root.store.login);
         this.$root.store.login(this.form.username);
-        this.$router.push("/");
+        //this.$router.push("/");
       } catch (err) {
         console.log(err.response);
         this.form.submitError = err.response.data.message;

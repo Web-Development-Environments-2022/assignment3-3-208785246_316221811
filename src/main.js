@@ -72,8 +72,11 @@ const shared_data = {
   username: localStorage.username,
   login(username) {
     localStorage.setItem("username", username);
+    localStorage.setItem("user_id", username);
     this.username = username;
+    this.user_id = username;
     console.log("login", this.username);
+    console.log("logged id is:", this.user_id);
   },
   logout() {
     console.log("logout");

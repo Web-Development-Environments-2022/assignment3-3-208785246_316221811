@@ -10,15 +10,16 @@
         <router-link :to="{ name: 'login' }">     Login     </router-link>
       </span>
       <span v-else>
-        <button @click="Logout" id="logout">     Logout     </button>   
+        <button @click="Logout" id="logout">     Logout     </button>
+        <!-- Trigger/Open The Modal -->
+        <button id="myBtn" @click="openModal">Create New Recipe</button>   
         <b-dropdown style=" position: absolute;right:100px;" id="mydrop" text="Personal">
           <b-dropdown-item> <router-link :to="{ name: 'favorites' }">Favorites</router-link></b-dropdown-item>
           <b-dropdown-item><router-link :to="{ name: 'myrecipes' }">My recipes</router-link></b-dropdown-item>
           <b-dropdown-item><router-link :to="{ name: 'family' }">Family recipes</router-link></b-dropdown-item>
         </b-dropdown>
       </span>
-         <!-- Trigger/Open The Modal -->
-<button id="myBtn" @click="openModal">Create New Recipe</button>
+
 
 <!-- The Modal -->
 <div id="myModal" class="modal">

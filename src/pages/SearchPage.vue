@@ -11,12 +11,12 @@
       <div><b-button class="button" id="search"  @click="search_query">search</b-button></div>
       <div>
   
-  <b-form-select id="numchoose" class="select" @input="getNum()" v-model="selected" :options="options1" />
+  <b-form-select id="numchoose" class="select" v-model="selected" :options="options1" />
 <div>
   <multiselect v-model=value id="cuisinechoose" tag-placeholder="Add this as new tag" placeholder="Choose cousine" label="name" track-by="code" :options="options2" :multiple="false" :taggable="true" @tag="addTag"></multiselect>
 </div>
 <div>
-  <b-form-select id="Intolerances" @input="getIntolerances()" v-model="chosenintolerances" :options="options3" :multiple="false"  />
+  <b-form-select id="Intolerances" v-model="chosenintolerances" :options="options3" />
 </div>
 </div>   
       
@@ -24,13 +24,15 @@
     </div> 
 <div class="container-fluid">
     <b-col >
-        <b-form-select @input="sort()" id="sortchoose" v-model="search.filter" :options="options"/>
-
+      <div v-if="recipes.length&&sent"> <h3>Here are {{selected}} recipes for {{myinput}} </h3><h3 v-if="this.chosenintolerances"> without {{this.chosenintolerances}}:</h3>
+        <h5 id="h5">sort results by:</h5><b-form-select @input="sort()" id="sortchoose" v-model="search.filter" :options="options"/>
       <b-row class="recipePreview" v-for="r in recipes" :key="r.id">
         <RecipePreview :recipe="r" />
 
       </b-row>
-  
+      </div>
+  <div v-else-if="!recipes.length&&sent"><h3> There are no recipes matching your request! Please try again.</h3></div>
+
         </b-col>
 
     </div>
@@ -52,15 +54,14 @@ export default {
   components: {
         RecipePreview,
         Multiselect },
-         props: {
-    title: {
-      type: String,
-    }
-  },
+
 /* All the data variable declaration are done here:  */
   data() {
     return { 
+      sent: false,
       value:[],
+      myinput: null,
+      chosenintolerances: null,
       selected: "5",
       value2: [],
       options2: [
@@ -93,7 +94,7 @@ export default {
       ],
 
       value1: [],
-      options3: [ { value: null, text: "Choose Intolerances",disabled: true },
+      options3: [ { value: null, text: "Choose Intolerances",disabled: false },
         { value: 'Dairy', text: 'Dairy' },
         { value: 'Egg', text: 'Egg' },
         { value: 'Gluten', text: 'Gluten' },
@@ -147,6 +148,7 @@ export default {
   
 ,
     async search_query() {
+      this.search.filter = "Sort By"
       const str1=`${this.myinput}`+""
       const num1=this.selected
       const intol=`${this.chosenintolerances}`
@@ -166,6 +168,7 @@ export default {
         const recipes = response.data;
         this.recipes = [];
         this.recipes.push(...recipes);
+        this.sent=true
 
       } catch (err) {
         console.log(err.response);
@@ -178,9 +181,9 @@ export default {
         this.recipes.sort(function(a, b) {
             return b.aggregateLikes - a.aggregateLikes;
           })}
-      else if(this.search.filter == "preparation time"){
+      if(this.search.filter == "preparation time"){
         this.recipes.sort(function(a, b) {
-            return b.readyInMinutes - a.readyInMinutes;
+            return a.readyInMinutes- b.readyInMinutes;
           })}
       
       
@@ -262,8 +265,8 @@ export default {
   position: relative;
   padding-left: 30px;
   width: 190px;
-  left:1000px;
-  top:250px;
+  left:500px;
+  top:-50px;
   font-family: 'Raleway',sans-serif;
 }
 
@@ -299,11 +302,14 @@ background-color: #3f5874;
   position:relative;
   min-height: 450px;
   align-items: center;
+    align-items: center;
+  align-self: center;
+
 }
 
 #recipePreview{
-  position:absolute;
-  left:800px;
+  position:relative;
+  left:5000px;
   align-items: center;
   align-self: center;
 }
@@ -316,6 +322,11 @@ background-color: #3f5874;
   color: #2c3e50;
 
   background:(120, 166, 203);
+}
+#h5{
+  position: relative;
+  left:500px;
+  bottom: 50px;
 }
 
 </style>
