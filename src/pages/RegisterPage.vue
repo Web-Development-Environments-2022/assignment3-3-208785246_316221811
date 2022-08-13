@@ -26,6 +26,74 @@
       </b-form-group>
 
       <b-form-group
+        id="input-group-firstName"
+        label-cols-sm="3"
+        label="First name:"
+        label-for="firstName"
+      >
+        <b-form-input
+          id="firstName"
+          v-model="$v.form.firstName.$model"
+          type="text"
+          :state="validateState('firstName')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.firstName.required">
+          first name is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-else-if="!$v.form.firstName.length">
+          first name maximum length should be 20 characters long
+        </b-form-invalid-feedback>
+          <b-form-invalid-feedback v-if="!$v.form.firstName.alpha">
+          first name should contain only letters. 
+          </b-form-invalid-feedback>
+      </b-form-group>
+
+<b-form-group
+        id="input-group-lastName"
+        label-cols-sm="3"
+        label="Last name:"
+        label-for="lastName"
+      >
+        <b-form-input
+          id="lastName"
+          v-model="$v.form.lastName.$model"
+          type="text"
+          :state="validateState('lastName')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.lastName.required">
+          last name is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-else-if="!$v.form.lastName.length">
+          last name maximum length should be 20 characters long
+        </b-form-invalid-feedback>
+          <b-form-invalid-feedback v-if="!$v.form.lastName.alpha">
+          last name should contain only letters. 
+          </b-form-invalid-feedback>
+      </b-form-group>
+
+
+       <b-form-group
+        id="input-group-email"
+        label-cols-sm="3"
+        label="Email:"
+        label-for="email"
+      >
+        <b-form-input
+          id="email"
+          v-model="$v.form.email.$model"
+          type="text"
+          :state="validateState('email')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.email.required">
+          email is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.email.email">
+          email is not valid
+        </b-form-invalid-feedback>
+      </b-form-group>
+
+
+      <b-form-group
         id="input-group-country"
         label-cols-sm="3"
         label="Country:"
@@ -65,6 +133,16 @@
           v-if="$v.form.password.required && !$v.form.password.length"
         >
           Have length between 5-10 characters long
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback
+          v-if="!$v.form.password.containsNumber"
+        >
+          password should contain one digit or more.
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback
+          v-if="!$v.form.password.containsSpecial"
+        >
+          password should contain one special character or more.
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -127,7 +205,7 @@ import {
   maxLength,
   alpha,
   sameAs,
-  email
+  email,
 } from "vuelidate/lib/validators";
 
 export default {
@@ -151,6 +229,16 @@ export default {
   },
   validations: {
     form: {
+      firstName: {
+        required,
+        length: (u) => maxLength(20)(u),
+        alpha
+      },
+      lastName: {
+        required,
+        length: (u) => maxLength(20)(u),
+        alpha
+      },
       username: {
         required,
         length: (u) => minLength(3)(u) && maxLength(8)(u),
@@ -159,9 +247,15 @@ export default {
       country: {
         required
       },
+       email: {
+        required,
+        email
+      },
       password: {
         required,
-        length: (p) => minLength(5)(p) && maxLength(10)(p)
+        length: (p) => minLength(5)(p) && maxLength(10)(p),
+        containsNumber: (p) => p.includes("0") || p.includes("1") || p.includes("2") || p.includes("3") || p.includes("4") || p.includes("5") || p.includes("6") || p.includes("7") || p.includes("8") || p.includes("9"),
+        containsSpecial:  (p) => p.includes("!") || p.includes("@") || p.includes("#") || p.includes("$") || p.includes("%") || p.includes("^") || p.includes("&") || p.includes("*") || p.includes("(") || p.includes(")") || p.includes("~") || p.includes("'") || p.includes("+") || p.includes("=") || p.includes(".") || p.includes("/") || p.includes("|") || p.includes("]") || p.includes("[") || p.includes("{") || p.includes("}") || p.includes(":") || p.includes(";") || p.includes("`") || p.includes("<") || p.includes(">") || p.includes("?") || p.includes(",") || p.includes("_") || p.includes("-")
       },
       confirmedPassword: {
         required,

@@ -46,7 +46,6 @@ export default {
   data() {
     return {
       image_load: false,
-      is_favorite: false
     };
   },
   methods: {
@@ -67,7 +66,6 @@ export default {
     },
     async markAsFavorite() {
       try {
-        is_favorite = true;
         this.axios.defaults.withCredentials = true;
         response = await this.axios.post(
           "http://localhost:3000/users/favorites",

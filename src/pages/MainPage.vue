@@ -5,18 +5,11 @@
     <RecipePreviewList id="randomRecipes" title="Explore this recipes" class="RandomRecipes center" />
     </div>
     <div class="col">
-    <RecipeViewedPreviewList id="viewed" v-if="$root.store.username" title="Last Viewed Recipes" ></RecipeViewedPreviewList>
-    <RecipePreviewList id="randomViewed" v-if="!$root.store.username" title="Last Viewed Recipes" 
-    :class="{
-        RandomRecipes: true,
-        blur: !$root.store.username,
-        center: true
-      }"
-      disabled
-      ></RecipePreviewList>
-    <router-link v-if="!$root.store.username" to="/login" tag="button">You need to Login to view this</router-link>
+      <login-page v-if="!$root.store.username" id="login"></login-page>
     </div>
-    <login-page v-if="!$root.store.username"></login-page>
+    <div class="col">
+    <RecipeViewedPreviewList id="viewed" v-if="$root.store.username" title="Last Viewed Recipes" ></RecipeViewedPreviewList>
+    </div>
   </div>
 </template>
 
@@ -44,18 +37,25 @@ export default {
   margin: 10px 0 10px;
 
 }
+
 .container1{
    display: table;
-    width: 100%; /*Optional*/
+    width: 150%; /*Optional*/
     table-layout: fixed; /*Optional*/
    // border-spacing: 10px; /*Optional*/
 }
 .col{
 display: table-cell;
+width: 800px;
 }
 .blur {
   -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
   filter: blur(2px);
+}
+#login{
+  width: 400px;
+  position: relative;
+  bottom: -20px;
 }
 ::v-deep .blur .recipe-preview {
   pointer-events: none;

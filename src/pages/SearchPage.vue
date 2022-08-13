@@ -2,14 +2,15 @@
   <div>
      
     <div class="pad-15-hor pad-15-ver search-parent">
-      <div id="search-bar" class="search-bar">
+      <div id="search-bar" class="search-bar"  @click="onClick">
 <b-form-input
           v-model="myinput"
           type="text"
           placeholder="Search by Name"
         ></b-form-input></div>
+        <b-form-group v-if="showSearchHistory" id="recentsearch" > recent search is here</b-form-group>
       <div><b-button class="button" id="search"  @click="search_query">search</b-button></div>
-      <div>
+      <div> 
   
   <b-form-select id="numchoose" class="select" v-model="selected" :options="options1" />
 <div>
@@ -58,10 +59,11 @@ export default {
 /* All the data variable declaration are done here:  */
   data() {
     return { 
+      showSearchHistory: false,
       sent: false,
       value:[],
       myinput: null,
-      chosenintolerances: null,
+      chosenintolerances:null,
       selected: "5",
       value2: [],
       options2: [
@@ -136,6 +138,10 @@ export default {
       this.options.push(tag)
       this.value.push(tag)
     },
+    onClick() {
+        // Toggle show/hide
+        this.showSearchHistory = !this.showSearchHistory;
+      },
     addTag1 (newTag1) {
       const tag = {
         name: newTag1,
@@ -313,6 +319,24 @@ background-color: #3f5874;
   align-items: center;
   align-self: center;
 }
+
+#recentsearch{
+  position:relative;
+  top:82px;
+  left:30px;
+  background-color: grey;
+  height: 30px;
+  width: 469px;
+  color: white;
+  padding-left: 15px;
+
+}
+
+#recentsearch:hover{
+  background-color: rgb(185, 185, 185);
+}
+
+
 
 .search-bar input {
   padding-left: 30px;

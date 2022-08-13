@@ -1,11 +1,13 @@
 <template>
   <div class="container">
     <h1 class="title">favorite recipes</h1>
-    <b-row>
-      <b-col v-for="r in recipes" :key="r.recipe_id">
+   
+      <b-row v-for="r in recipes" :key="r.recipe_id">
+       <b-col>
         <RecipePreview class="recipePreview" :recipe="r" />
       </b-col>
-    </b-row>
+
+      </b-row>
   </div>
 </template>
 

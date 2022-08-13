@@ -14,6 +14,9 @@
               <div><h6>Likes:</h6> {{ recipe.popularity }} likes</div>
               <div><h6>servings:</h6>{{ recipe.servings }} </div>
             </div>
+          <img v-if="recipe.vegan" class="vegan" src="../assets/vega.jpg" />
+          <img v-if="recipe.vegetarian" class="vegan" src="../assets/ve.png" />
+          <img v-if="recipe.glutenFree" class="vegan" src="../assets/gl.jpg" />
             <h6>Ingredients:</h6>
             <ul>
               <li
@@ -81,7 +84,10 @@ export default {
         readyInMinutes,
         image,
         title,
-        servings
+        servings,
+        vegan,
+        vegetarian,
+        glutenFree
       } = response.data;
 
      let _instructions = analyzedInstructions
@@ -100,7 +106,10 @@ export default {
         readyInMinutes,
         image,
         title,
-        servings
+        servings,
+        vegan,
+        vegetarian,
+        glutenFree
       };
 
       this.recipe = _recipe;
@@ -124,6 +133,11 @@ export default {
   margin-right: auto;
   width: 50%;
 }
+
+.vegan {
+  width: 50px;
+}
+
 h1 { color: rgb(120, 166, 203); text-shadow: 2px 2px 2px #000000; font-family: 'Raleway',sans-serif; font-size: 40px; font-weight: 800; text-align: center; text-transform: uppercase; }
 h6 { color: rgb(120, 166, 203); font-family: 'Raleway',sans-serif; font-size: 20px; font-weight: 800; }
 

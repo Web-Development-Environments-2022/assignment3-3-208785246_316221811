@@ -11,7 +11,7 @@
       </b-row>
     </b-col>
   </b-container>
-  <b-button @click="showMore">Show me more!</b-button>
+  <b-button id="showme" @click="showMore">Show me more!</b-button>
 </div>
 </template>
 
@@ -65,5 +65,10 @@ export default {
 <style lang="scss" scoped>
 .container {
   min-height: 400px;
+}
+#showme{
+  margin:10px;
+  position: relative;
+  bottom: 10px;
 }
 </style>
