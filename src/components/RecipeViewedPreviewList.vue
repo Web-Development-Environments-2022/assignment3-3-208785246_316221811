@@ -6,6 +6,7 @@
     </h3>
     <b-col>
       <b-row v-for="r in recipes" :key="r.id">
+        <img class="vegan" id="view" src="../assets/view.jpg" />
         <RecipePreview class="recipePreview" :recipe="r" />
       </b-row>
     </b-col>
@@ -60,4 +61,16 @@ export default {
 .container {
   min-height: 400px;
 }
+
+#view {
+  margin:0px;
+  margin-top: -30px;
+  padding:0px;
+  position:relative;
+  left:90px;
+  top:33px;
+  border-radius: 50%;
+  width: 30px;
+}
+
 </style>

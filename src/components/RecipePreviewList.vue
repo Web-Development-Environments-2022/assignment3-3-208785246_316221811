@@ -33,7 +33,7 @@ export default {
       recipes: []
     };
   },
-  mounted() {
+    mounted() {
     this.updateRecipes();
   },
   methods: {

@@ -8,7 +8,7 @@
           type="text"
           placeholder="Search by Name"
         ></b-form-input></div>
-        <b-form-group v-if="showSearchHistory" id="recentsearch" > recent search is here</b-form-group>
+        <b-button @click="chooserecent" v-if="showSearchHistory" id="recentsearch" > {{lastSearch}}</b-button>
       <div><b-button class="button" id="search"  @click="search_query">search</b-button></div>
       <div> 
   
@@ -58,11 +58,12 @@ export default {
 
 /* All the data variable declaration are done here:  */
   data() {
-    return { 
+    return {
+      Searclasth: localStorage.getItem("last_search"), 
       showSearchHistory: false,
       sent: false,
       value:[],
-      myinput: null,
+      myinput: "",
       chosenintolerances:null,
       selected: "5",
       value2: [],
@@ -129,7 +130,8 @@ export default {
     };
   },
   methods: {
-         addTag (newTag) {
+      
+    addTag (newTag) {
       const tag = {
         name: newTag,
         code: newTag.substring(0, 2) + Math.floor((Math.random() * 10000000))
@@ -150,10 +152,16 @@ export default {
       
       this.options3.push(tag)
       this.value1.push(tag)
-    }
-  
-,
+    },
+    chooserecent(){
+        this.myinput=localStorage.getItem("last_search");
+        this.showSearchHistory = false;
+      },
+
     async search_query() {
+      localStorage.setItem("last_search", this.myinput);
+      this.lastSearch = this.myinput;
+      this.showSearchHistory = false
       this.search.filter = "Sort By"
       const str1=`${this.myinput}`+""
       const num1=this.selected

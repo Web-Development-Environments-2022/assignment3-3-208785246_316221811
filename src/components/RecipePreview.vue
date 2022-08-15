@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div><b-button id="favorite" v-if="$root.store.username && recipe.id<12345678" @click="markAsFavorite">favorite</b-button></div>
+    <div><b-button id=recipe.id v-if="$root.store.username && recipe.id<12345678" @click="markAsFavorite">favorite</b-button>
+    </div>
   <router-link
     :to="{ name: 'recipe', params: { recipeId: recipe.id } }" @click.native="RecipeIsViewed" id="clickPhoto"
     class="recipe-preview"
@@ -20,7 +21,7 @@
           <img v-if="recipe.vegan" class="vegan" src="../assets/vega.jpg" />
         </li>
         <li>
-          <img v-if="recipe.vegetarian" class="vegan" src="../assets/ve.png" />
+          <img v-if="recipe.vegetarian" id="vegetarian" class="vegan" src="../assets/ve.png" />
         </li>
         <li>
           <img v-if="recipe.glutenFree" class="vegan" src="../assets/gl.jpg" />
@@ -46,9 +47,11 @@ export default {
   data() {
     return {
       image_load: false,
+      viewed: [],
     };
   },
   methods: {
+   
     async RecipeIsViewed(){
       try {
         this.axios.defaults.withCredentials = true;
@@ -125,6 +128,14 @@ export default {
   top:-20px;
   height: 200px;
   position: relative;
+}
+
+#view {
+  border-radius: 50%;
+}
+
+#vegetarian {
+  border-radius: 50%;
 }
 
 .recipe-preview .recipe-body .recipe-image {
