@@ -3,18 +3,18 @@
     <h1> My recipes</h1>
     <b-row>
       <b-col v-for="r in recipes" :key="r.recipe_id">
-        <RecipePreview class="recipePreview" :recipe="r" />
+        <MyRecipePreview class="recipePreview" :recipe="r" />
       </b-col>
     </b-row>
   </b-container>
 </template>
 
 <script>
-import RecipePreview from "../components/RecipePreview.vue";
+import MyRecipePreview from "../components/MyRecipePreview.vue";
 export default {
   name: "myrecipes",
   components: {
-    RecipePreview
+    MyRecipePreview
   },
   props: {
     title: {
@@ -43,7 +43,7 @@ export default {
         const recipes = response.data;
         this.recipes = [];
         this.recipes.push(...recipes);
-         console.log(this.recipes);
+        console.log(this.recipes);
       } catch (error) {
         console.log(error);
       }
