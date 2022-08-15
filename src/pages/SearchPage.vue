@@ -8,7 +8,7 @@
           type="text"
           placeholder="Search by Name"
         ></b-form-input></div>
-        <b-button @click="chooserecent" v-if="showSearchHistory" id="recentsearch" > {{lastSearch}}</b-button>
+        <b-button @click="chooserecent" v-if="showSearchHistory && lastSearch!=null" id="recentsearch" > {{lastSearch}}</b-button>
       <div><b-button class="button" id="search"  @click="search_query">search</b-button></div>
       <div> 
   
@@ -59,7 +59,7 @@ export default {
 /* All the data variable declaration are done here:  */
   data() {
     return {
-      Searclasth: localStorage.getItem("last_search"), 
+      lastSearch: localStorage.getItem("last_search"),
       showSearchHistory: false,
       sent: false,
       value:[],
@@ -142,7 +142,9 @@ export default {
     },
     onClick() {
         // Toggle show/hide
-        this.showSearchHistory = !this.showSearchHistory;
+        if(this.lastSearch!=""){
+          this.showSearchHistory = !this.showSearchHistory;
+          }
       },
     addTag1 (newTag1) {
       const tag = {
