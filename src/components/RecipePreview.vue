@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div><b-button id=recipe.id v-if="$root.store.username && recipe.id<12345678" @click="markAsFavorite">favorite</b-button>
+    <div><b-button v-bind:id="recipe.id" v-if="$root.store.username && recipe.id<12345678" @click="markAsFavorite">favorite</b-button>
     </div>
   <router-link
     :to="{ name: 'recipe', params: { recipeId: recipe.id } }" @click.native="RecipeIsViewed" id="clickPhoto"
@@ -38,20 +38,27 @@
 </template>
 
 <script>
+
 export default {
   mounted() {
     this.axios.get(this.recipe.image).then((i) => {
       this.image_load = true;
     });
+    if (localStorage.getItem("username") && this.favorites1.includes(this.recipe.id)){
+        document.getElementById(this.recipe.id).style.backgroundColor = "green";
+        document.getElementById(this.recipe.id).disabled = true;
+      }
   },
+  
   data() {
     return {
+      favorites1: localStorage.getItem("favorites"),
+      isFavorite: false,
       image_load: false,
       viewed: [],
     };
   },
   methods: {
-   
     async RecipeIsViewed(){
       try {
         this.axios.defaults.withCredentials = true;
@@ -69,6 +76,11 @@ export default {
     },
     async markAsFavorite() {
       try {
+        console.log(this.favorites1);
+        document.getElementById(this.recipe.id).style.backgroundColor = "green";
+        document.getElementById(this.recipe.id).disabled = true;
+        this.isFavorite = true;
+        localStorage.setItem("favorites", localStorage.getItem("favorites").concat("_").concat(this.recipe.id));
         this.axios.defaults.withCredentials = true;
         response = await this.axios.post(
           "http://localhost:3000/users/favorites",
@@ -116,6 +128,7 @@ export default {
 </script>
 
 <style scoped>
+
 .recipe-preview {
   display: inline-block;
   width: 90%;

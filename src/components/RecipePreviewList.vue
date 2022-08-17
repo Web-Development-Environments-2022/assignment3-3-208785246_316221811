@@ -7,7 +7,7 @@
     </h3>
     <b-col>
       <b-row v-for="r in recipes" :key="r.id">
-        <RecipePreview class="recipePreview" :recipe="r" />
+        <RecipePreview class="recipePreview" :recipe="r"/>
       </b-row>
     </b-col>
   </b-container>
@@ -30,15 +30,36 @@ export default {
   },
   data() {
     return {
-      recipes: []
+      recipes: [],
+      favorite_recipes: []
     };
   },
     mounted() {
+    //this.favoriteRecipes();
     this.updateRecipes();
   },
   methods: {
     async showMore() {
       this.updateRecipes();
+    },
+    async favoriteRecipes() {
+      try {
+        this.axios.defaults.withCredentials = true;
+        const response = await this.axios.get(
+          "http://localhost:3000/users/favorites",
+        );
+        this.axios.defaults.withCredentials = false;
+        console.log(response);
+        const favorite_recipes = response.data;
+        this.favorite_recipes = [];
+        //this.favorite_recipes.push(...favorite_recipes);
+        for (let i=0; i<favorite_recipes.length; i++){
+          this.favorite_recipes.push(favorite_recipes[i].id);
+        }
+        console.log(this.favorite_recipes);
+      } catch (error) {
+        console.log(error);
+      } 
     },
     async updateRecipes() {
       try {
@@ -66,7 +87,9 @@ export default {
 .container {
   min-height: 400px;
 }
+
 #showme{
+  background-color: rgb(83, 114, 139);
   margin:10px;
   position: relative;
   bottom: 10px;
