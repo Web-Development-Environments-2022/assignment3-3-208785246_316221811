@@ -74,6 +74,7 @@ const shared_data = {
     localStorage.setItem("last_search", "");
     localStorage.setItem("username", username);
     localStorage.setItem("user_id", username);
+    localStorage.setItem("favorites", "favorites_");
     this.username = username;
     this.user_id = username;
     console.log("login", this.username);
@@ -84,6 +85,7 @@ const shared_data = {
     localStorage.removeItem("last_search");
     localStorage.removeItem("username");
     localStorage.removeItem("user_id");
+    localStorage.removeItem("favorites");
     this.username = undefined;
     this.user_id = undefined;
   },
